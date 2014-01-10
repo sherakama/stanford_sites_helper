@@ -404,10 +404,16 @@ function _stanford_sites_helper_get_usage_info() {
  */
 function _stanford_sites_helper_get_usage() {
 
-  try{
+  try {
     $info = _stanford_sites_helper_get_usage_info();
   }
   catch (Exception $e) {
+
+    // Don't log if the command is missing or it will flood your logs!
+    if (strpos($e->message, 'fs: command not found') {
+      return 0;
+    }
+
     watchdog('stanford_sites_helper', 'Error getting file storage data. Possibly could not execute shell function or shell function does not exist.');
     return 0;
   }
