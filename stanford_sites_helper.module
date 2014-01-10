@@ -410,7 +410,7 @@ function _stanford_sites_helper_get_usage() {
   catch (Exception $e) {
 
     // Don't log if the command is missing or it will flood your logs!
-    if (strpos($e->message, 'fs: command not found')) {
+    if (strpos($e->getMessage(), 'fs: command not found')) {
       return 0;
     }
 
